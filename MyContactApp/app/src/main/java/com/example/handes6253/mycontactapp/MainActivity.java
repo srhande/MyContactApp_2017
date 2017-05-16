@@ -1,6 +1,7 @@
 package com.example.handes6253.mycontactapp;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,5 +50,24 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+    }
+
+    public void viewData(View v) {
+        Cursor res = myDb.getAllData();
+        if(res.getCount() == 0) {
+            showMessage("Error", "No data found in database");
+            //Output message using Log.d and Toast
+            return;
+        }
+
+        StringBuffer buffer = new StringBuffer();
+        //setup a loop with Cursor (res) using moveToNext
+        //append each COL to the buffer
+        //display message using showMessage
+        showMessage("Data", buffer.toString());
+    }
+
+    private void showMessage(String title, String message) {
+        //AlertDialg.Builder
     }
 }

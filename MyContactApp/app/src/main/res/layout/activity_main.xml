@@ -38,4 +38,14 @@
         android:layout_marginBottom="90dp"
         android:onClick="addData"
         android:nestedScrollingEnabled="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Data"
+        android:id="@+id/button_view"
+        android:layout_alignBottom="@+id/button_add"
+        android:layout_alignEnd="@+id/editText_name"
+        android:nestedScrollingEnabled="true"
+        android:onClick="viewData" />
 </RelativeLayout>
