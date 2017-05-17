@@ -2,6 +2,7 @@ package com.example.handes6253.mycontactapp;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             Log.d("MyContact", "Failure inserting data");
-            //Insert toast message
+            //Insert toast message - done
             Context context = getApplicationContext();
             CharSequence text = "Fail";
             int duration = Toast.LENGTH_SHORT;
@@ -57,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
         if(res.getCount() == 0) {
             showMessage("Error", "No data found in database");
             //Output message using Log.d and Toast
+            Context context = getApplicationContext();
+            CharSequence text = "No data";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
             return;
         }
 
@@ -69,5 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void showMessage(String title, String message) {
         //AlertDialg.Builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }
