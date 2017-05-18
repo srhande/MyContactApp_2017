@@ -48,4 +48,40 @@
         android:layout_alignEnd="@+id/editText_name"
         android:nestedScrollingEnabled="true"
         android:onClick="viewData" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="AGE:"
+        android:id="@+id/textView_age"
+        android:layout_below="@+id/editText_name"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_age"
+        android:layout_alignBottom="@+id/textView_age"
+        android:layout_alignEnd="@+id/editText_name"
+        android:layout_alignStart="@+id/editText_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="EMAIL:"
+        android:id="@+id/textView_email"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_email"
+        android:layout_alignTop="@+id/textView_email"
+        android:layout_alignEnd="@+id/editText_age"
+        android:layout_toEndOf="@+id/textView" />
+
 </RelativeLayout>

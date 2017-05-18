@@ -15,7 +15,10 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
     EditText editName;
+    EditText editAge;
+    EditText editEmail;
     Button btnAddData;
+    Button btnViewData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +27,18 @@ public class MainActivity extends AppCompatActivity {
 
         myDb = new DatabaseHelper(this);
 
-        //Add the layout vars
+        //Add the layout vars - done
         editName = (EditText) findViewById(R.id.editText_name);
+        editAge = (EditText) findViewById(R.id.editText_age);
+        editEmail = (EditText) findViewById(R.id.editText_email);
     }
 
     public void addData(View v){
-        boolean isInserted = myDb.insertData(editName.getText().toString());
+        boolean isInserted = myDb.insertData(editName.getText().toString(), editAge.getText().toString(), editEmail.getText().toString());
 
         if (isInserted == true){
             Log.d("MyContact", "Success inserting data");
-            //Insert Toast message here
+            //Insert Toast message here - done
             Context context = getApplicationContext();
             CharSequence text = "Success";
             int duration = Toast.LENGTH_SHORT;
@@ -69,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
 
         StringBuffer buffer = new StringBuffer();
         //setup a loop with Cursor (res) using moveToNext
+        if (res.moveToNext()) {
+            buffer.append(editName); //WRONG - FIX
+        }
         //append each COL to the buffer
         //display message using showMessage
         showMessage("Data", buffer.toString());
