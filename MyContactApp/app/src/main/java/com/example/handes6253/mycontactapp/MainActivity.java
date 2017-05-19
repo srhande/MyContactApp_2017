@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         if(res.getCount() == 0) {
             showMessage("Error", "No data found in database");
             //Output message using Log.d and Toast
+            Log.d("Error", "No data");
             Context context = getApplicationContext();
             CharSequence text = "No data";
             int duration = Toast.LENGTH_SHORT;
@@ -73,12 +74,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         StringBuffer buffer = new StringBuffer();
-        //setup a loop with Cursor (res) using moveToNext
-        if (res.moveToNext()) {
-            buffer.append(editName); //WRONG - FIX
+        //setup a loop with Cursor (res) using moveToNext - done
+        if (res != null) {
+            res.moveToFirst();
+            for (int i = 0; i < res.getCount(); i++) {
+                for (int j = 0; j < res.getColumnNames().length; j++) {
+                    buffer.append(res.getString(j) + "\n");
+                }
+                buffer.append("\n");
+                res.moveToNext();
+            }
         }
-        //append each COL to the buffer
-        //display message using showMessage
+        //append each COL to the buffer - done
+        //display message using showMessage - done
         showMessage("Data", buffer.toString());
     }
 
