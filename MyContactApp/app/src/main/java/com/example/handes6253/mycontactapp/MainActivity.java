@@ -17,8 +17,9 @@ public class MainActivity extends AppCompatActivity {
     EditText editName;
     EditText editAge;
     EditText editEmail;
+    EditText editSearch;
     Button btnAddData;
-    Button btnViewData;
+    Button btnSearchData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         editName = (EditText) findViewById(R.id.editText_name);
         editAge = (EditText) findViewById(R.id.editText_age);
         editEmail = (EditText) findViewById(R.id.editText_email);
+        editSearch = (EditText) findViewById(R.id.editText_search);
+        btnAddData = (Button) findViewById(R.id.button_add);
+        btnSearchData = (Button) findViewById(R.id.button_search);
     }
 
     public void addData(View v){
@@ -97,5 +101,23 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(message);
         builder.show();
+    }
+
+    public void searchData(View v) {
+        Cursor res = myDb.getAllData();
+        StringBuffer buffer = new StringBuffer();
+        if (res != null) {
+            res.moveToFirst();
+            for (int i = 0; i < res.getCount(); i++) {
+                if (res.getString(1).equals(editSearch.getText().toString())) {
+                    for (int j = 0; j < res.getColumnNames().length; j++) {
+                        buffer.append(res.getString(j) + "\n");
+                    }
+                    buffer.append("\n");
+                }
+                res.moveToNext();
+            }
+            showMessage("Contact: " + editSearch.getText().toString(), buffer.toString());
+        }
     }
 }
